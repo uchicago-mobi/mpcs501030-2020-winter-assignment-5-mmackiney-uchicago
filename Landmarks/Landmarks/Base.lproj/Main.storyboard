@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12B-nd-UFd">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12B-nd-UFd" customClass="DisplayView" customModule="Landmarks" customModuleProvider="target">
                                 <rect key="frame" x="32" y="60" width="350" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -45,11 +45,18 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="descriptionView" destination="Xon-Zb-gXi" id="XFH-7z-cMJ"/>
+                                    <outlet property="favoriteView" destination="hy6-As-FOP" id="160-BI-bdM"/>
+                                    <outlet property="titleView" destination="8Mf-DM-lit" id="4mr-h8-1NK"/>
+                                </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nY-Zq-cqn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nY-Zq-cqn">
                                 <rect key="frame" x="0.0" y="796" width="414" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="NKw-Gn-UDh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Favorites">
                                     <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -60,10 +67,15 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="7nY-Zq-cqn" secondAttribute="bottom" id="3Pn-QM-ns1"/>
+                            <constraint firstItem="7nY-Zq-cqn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6XP-CO-kUy"/>
+                            <constraint firstItem="7nY-Zq-cqn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sy1-kY-52p"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="descriptionView" destination="12B-nd-UFd" id="slJ-yi-C2n"/>
+                        <outlet property="displayView" destination="12B-nd-UFd" id="zre-HM-IfN"/>
                         <outlet property="mapView" destination="50w-Vf-cNw" id="Agp-Da-efL"/>
                     </connections>
                 </viewController>
@@ -74,7 +86,6 @@
         <!--Favorites View Controller-->
         <scene sceneID="mdE-pV-zpP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4RG-nP-qHX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="OaO-LK-JKR" customClass="FavoritesViewController" customModule="Landmarks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SCP-Oc-CVV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -94,6 +105,7 @@
                         <outlet property="favoritesTable" destination="McA-tD-89S" id="iKY-GP-Fq2"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4RG-nP-qHX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1034.7826086956522" y="95.758928571428569"/>
         </scene>
