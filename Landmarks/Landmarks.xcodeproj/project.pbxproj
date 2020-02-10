@@ -13,6 +13,11 @@
 		EE1370A323F0940900A7B064 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1370A123F0940900A7B064 /* Main.storyboard */; };
 		EE1370A523F0940900A7B064 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE1370A423F0940900A7B064 /* Assets.xcassets */; };
 		EE1370A823F0940900A7B064 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE1370A623F0940900A7B064 /* LaunchScreen.storyboard */; };
+		EE1370B023F09C0400A7B064 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1370AF23F09C0400A7B064 /* Place.swift */; };
+		EE1370B423F09D2E00A7B064 /* PlaceMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1370B323F09D2E00A7B064 /* PlaceMarkerView.swift */; };
+		EE1370B623F0AEE600A7B064 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1370B523F0AEE600A7B064 /* FavoritesViewController.swift */; };
+		EE1370B823F0D61E00A7B064 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1370B723F0D61E00A7B064 /* DataManager.swift */; };
+		EE1370BA23F0DC8200A7B064 /* PlacesFavoritesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1370B923F0DC8200A7B064 /* PlacesFavoritesDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		EE1370A423F0940900A7B064 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE1370A723F0940900A7B064 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE1370A923F0940900A7B064 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE1370AF23F09C0400A7B064 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		EE1370B323F09D2E00A7B064 /* PlaceMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarkerView.swift; sourceTree = "<group>"; };
+		EE1370B523F0AEE600A7B064 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		EE1370B723F0D61E00A7B064 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		EE1370B923F0DC8200A7B064 /* PlacesFavoritesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesFavoritesDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +69,12 @@
 				EE13709B23F0940900A7B064 /* AppDelegate.swift */,
 				EE13709D23F0940900A7B064 /* SceneDelegate.swift */,
 				EE13709F23F0940900A7B064 /* MapViewController.swift */,
+				EE1370B523F0AEE600A7B064 /* FavoritesViewController.swift */,
+				EE1370AF23F09C0400A7B064 /* Place.swift */,
+				EE1370B323F09D2E00A7B064 /* PlaceMarkerView.swift */,
 				EE1370A123F0940900A7B064 /* Main.storyboard */,
+				EE1370B723F0D61E00A7B064 /* DataManager.swift */,
+				EE1370B923F0DC8200A7B064 /* PlacesFavoritesDelegate.swift */,
 				EE1370A423F0940900A7B064 /* Assets.xcassets */,
 				EE1370A623F0940900A7B064 /* LaunchScreen.storyboard */,
 				EE1370A923F0940900A7B064 /* Info.plist */,
@@ -140,7 +155,12 @@
 			files = (
 				EE1370A023F0940900A7B064 /* MapViewController.swift in Sources */,
 				EE13709C23F0940900A7B064 /* AppDelegate.swift in Sources */,
+				EE1370B423F09D2E00A7B064 /* PlaceMarkerView.swift in Sources */,
+				EE1370B823F0D61E00A7B064 /* DataManager.swift in Sources */,
 				EE13709E23F0940900A7B064 /* SceneDelegate.swift in Sources */,
+				EE1370B623F0AEE600A7B064 /* FavoritesViewController.swift in Sources */,
+				EE1370BA23F0DC8200A7B064 /* PlacesFavoritesDelegate.swift in Sources */,
+				EE1370B023F09C0400A7B064 /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
