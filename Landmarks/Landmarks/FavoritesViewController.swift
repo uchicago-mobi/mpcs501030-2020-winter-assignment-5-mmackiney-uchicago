@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController, UITableViewDelegate {
+class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var favoritesTable: UITableView!
     weak var delegate: PlacesFavoritesDelegate?
@@ -17,6 +17,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritesTable.delegate = self
+        favoritesTable.dataSource = self
 
     }
     
@@ -32,10 +33,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
         cell.textLabel!.text = self.annotations[indexPath.row].title
-        print(self.annotations[indexPath.row].title)
-
         return cell
     }
 
