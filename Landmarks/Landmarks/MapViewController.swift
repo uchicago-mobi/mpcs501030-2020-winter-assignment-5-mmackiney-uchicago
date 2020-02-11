@@ -26,12 +26,18 @@ class MapViewController: UIViewController {
         mapView.region = region
         
         let path = URL(fileURLWithPath: Bundle.main.path(forResource: "Data", ofType: "plist")!)
-        var settings: LocationData
+        var locations: LocationData
         
         let data = try! Data(contentsOf: path)
         let decoder = PropertyListDecoder()
-        settings = try! decoder.decode(LocationData.self, from: data)
-        print(settings)
+        locations = try! decoder.decode(LocationData.self, from: data)
+        for location in locations.places {
+            let annotation = Place()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+            annotation.title = location.name
+            annotation.longDescription = location.description
+            mapView.addAnnotation(annotation)
+        }
         
     }
     
