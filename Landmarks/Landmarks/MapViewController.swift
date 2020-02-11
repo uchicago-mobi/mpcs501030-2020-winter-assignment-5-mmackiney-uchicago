@@ -19,15 +19,20 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         mapView.delegate = self
 
         mapView.showsCompass = false
         mapView.pointOfInterestFilter = .excludingAll
         
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 41.882056, longitude: -87.627819), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        decodeData()
+        displayView.titleView.text = annotations[1].title
+        displayView.descriptionView.text = annotations[1].subtitle
+        let region = MKCoordinateRegion(center: annotations[1].coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         mapView.region = region
         
+    }
+    
+    func decodeData() {
         let path = URL(fileURLWithPath: Bundle.main.path(forResource: "Data", ofType: "plist")!)
         var locations: LocationData
         
@@ -42,7 +47,6 @@ class MapViewController: UIViewController {
             annotations.append(annotation)
             mapView.addAnnotation(annotation)
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,7 +70,5 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: PlacesFavoritesDelegate {
     func favoritePlace(name: String) {
-       // Update the map view based on the favorite
-       // place that was passed in
     }
 }

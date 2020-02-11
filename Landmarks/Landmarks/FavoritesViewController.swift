@@ -13,12 +13,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet var favoritesTable: UITableView!
     weak var delegate: PlacesFavoritesDelegate?
     var annotations: [Place] = []
+    @IBOutlet var dismissButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritesTable.delegate = self
         favoritesTable.dataSource = self
+        
+        dismissButton.addTarget(self,
+        action: #selector(buttonTapped),
+        for: .touchUpInside)
 
+    }
+    
+    @objc func buttonTapped(_ button: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,8 +42,17 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel!.text = self.annotations[indexPath.row].title
+        cell.textLabel!.text = annotations[indexPath.row].title
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.dismiss(animated: true, completion: nil)
+        print("hi")
+    }
+    
+    @IBAction func pushData(_ sender: Any) {
+        
     }
 
 }
