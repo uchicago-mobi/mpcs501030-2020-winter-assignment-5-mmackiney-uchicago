@@ -10,15 +10,19 @@ import Foundation
 
 public class DataManager {
   
-  // MARK: - Singleton Stuff
-  public static let sharedInstance = DataManager()
+    // MARK: - Singleton Stuff
+    public static let sharedInstance = DataManager()
   
-  //This prevents others from using the default '()' initializer
-  fileprivate init() {}
+    //This prevents others from using the default '()' initializer
+    fileprivate init() {}
 
-  // Your code (these are just example functions, implement what you need)
-  func loadAnnotationFromPlist() {}
-  func saveFavorites() {}
-  func deleteFavorite() {}
-  func listFavorites() {}
+    // Your code (these are just example functions, implement what you need)
+    func loadAnnotationFromPlist() {}
+//    func saveFavorites(places: [Place]) {
+//        for place in places {
+//            UserDefaults.standard.set(
+//        }
+//    }
+    func deleteFavorite() {}
+    func listFavorites() {}
 }

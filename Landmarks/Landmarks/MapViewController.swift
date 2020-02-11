@@ -14,6 +14,9 @@ class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var displayView: DisplayView!
     
+    let id = MKMapViewDefaultAnnotationViewReuseIdentifier
+    var annotations = [Place]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,10 +38,16 @@ class MapViewController: UIViewController {
             let annotation = Place()
             annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
             annotation.title = location.name
-            annotation.longDescription = location.description
+            annotation.subtitle = location.description
+            annotations.append(annotation)
             mapView.addAnnotation(annotation)
         }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! FavoritesViewController
+        destination.annotations = self.annotations
     }
     
 }
@@ -48,11 +57,16 @@ extension MapViewController: MKMapViewDelegate {
         displayView.titleView.text = (view.annotation?.title)!
         displayView.descriptionView.text = (view.annotation?.subtitle)!
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: id, for: annotation) as? MKMarkerAnnotationView else { return nil }
+        return annotationView
+    }
 }
 
 extension MapViewController: PlacesFavoritesDelegate {
-  func favoritePlace(name: String) {
-   // Update the map view based on the favorite
-   // place that was passed in
-  }
+    func favoritePlace(name: String) {
+       // Update the map view based on the favorite
+       // place that was passed in
+    }
 }
