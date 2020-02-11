@@ -11,7 +11,7 @@ import MapKit
 
 class Place: MKPointAnnotation {
 
-      var name: String?
-      var longDescription: String?
+    var name: String?
+    var longDescription: String?
     
 }

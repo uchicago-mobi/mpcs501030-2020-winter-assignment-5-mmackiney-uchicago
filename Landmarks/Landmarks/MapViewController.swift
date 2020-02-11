@@ -25,10 +25,16 @@ class MapViewController: UIViewController {
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 41.882056, longitude: -87.627819), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         mapView.region = region
         
-        displayView.titleView.text = "Hello"
-        displayView.descriptionView.text = "This is a description"
-        displayView.favoriteView.isSelected = true
+        let path = URL(fileURLWithPath: Bundle.main.path(forResource: "Data", ofType: "plist")!)
+        var settings: LocationData
+        
+        let data = try! Data(contentsOf: path)
+        let decoder = PropertyListDecoder()
+        settings = try! decoder.decode(LocationData.self, from: data)
+        print(settings)
+        
     }
+    
 }
 
 extension MapViewController: MKMapViewDelegate {
