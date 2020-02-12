@@ -17,10 +17,8 @@ public class DataManager {
     fileprivate init() {}
 
     // Your code (these are just example functions, implement what you need)
-//    func saveFavorites(places: [Place]) {
-//        for place in places {
-//            UserDefaults.standard.set(
-//        }
-//    }
+    func saveFavorites(places: [Place]) {
+        UserDefaults.standard.set(places, forKey: "favoritesarray")
+    }
     func deleteFavorite() {}
 }

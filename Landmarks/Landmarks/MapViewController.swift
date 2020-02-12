@@ -28,10 +28,10 @@ class MapViewController: UIViewController {
         mapView.pointOfInterestFilter = .excludingAll
         
         decodeData()
-        displayView.titleView.text = annotations[1].name
-        displayView.descriptionView.text = annotations[1].longDescription
-        let region = MKCoordinateRegion(center: annotations[1].coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-        currentAnnotation = annotations[1]
+        displayView.titleView.text = annotations[0].name
+        displayView.descriptionView.text = annotations[0].longDescription
+        let region = MKCoordinateRegion(center: annotations[0].coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        currentAnnotation = annotations[0]
         mapView.region = region
         
         displayView.favoriteView.addTarget(self,
@@ -70,8 +70,8 @@ class MapViewController: UIViewController {
                 }
             }
         }
+        // DataManager.sharedInstance.saveFavorites(places: favorites)
         button.isSelected = currentAnnotation!.favorite
-        print(favorites)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,7 +94,6 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = PlaceMarkerView()
-        print(type(of: annotationView))
         return annotationView
     }
 }
