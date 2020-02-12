@@ -61,10 +61,14 @@ class MapViewController: UIViewController {
         if !currentAnnotation!.favorite {
             currentAnnotation?.favorite = true
             favorites.append(currentAnnotation!)
-            print("added")
         } else {
             currentAnnotation?.favorite = false
-            print("nothing")
+            for i in 0..<favorites.count {
+                if favorites[i].name == currentAnnotation!.name {
+                    favorites.remove(at: i)
+                    break
+                }
+            }
         }
         button.isSelected = currentAnnotation!.favorite
         print(favorites)
@@ -100,6 +104,7 @@ extension MapViewController: PlacesFavoritesDelegate {
         self.placeTitle = name
         for annotation in annotations {
             if annotation.name == name {
+                currentAnnotation = annotation
                 displayView.titleView.text = annotation.name
                 displayView.descriptionView.text = annotation.longDescription
                 displayView.favoriteView.isSelected = annotation.favorite

@@ -17,12 +17,10 @@ public class DataManager {
     fileprivate init() {}
 
     // Your code (these are just example functions, implement what you need)
-    func loadAnnotationFromPlist() {}
 //    func saveFavorites(places: [Place]) {
 //        for place in places {
 //            UserDefaults.standard.set(
 //        }
 //    }
     func deleteFavorite() {}
-    func listFavorites() {}
 }
