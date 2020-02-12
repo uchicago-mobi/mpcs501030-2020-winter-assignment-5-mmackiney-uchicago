@@ -15,9 +15,9 @@ class PlaceMarkerView: MKMarkerAnnotationView {
         willSet {
           clusteringIdentifier = "Place"
           displayPriority = .defaultLow
-          markerTintColor = .systemRed
+          markerTintColor = .systemBlue
           glyphImage = UIImage(systemName: "pin.fill")
-          }
+        }
     }
 
 }

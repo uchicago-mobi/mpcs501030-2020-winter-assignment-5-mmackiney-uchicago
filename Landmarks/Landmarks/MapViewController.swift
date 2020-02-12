@@ -17,6 +17,8 @@ class MapViewController: UIViewController {
     let id = MKMapViewDefaultAnnotationViewReuseIdentifier
     var annotations = [Place]()
     var placeTitle: String?
+    var favorites = [Place]()
+    var currentAnnotation: Place?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +28,15 @@ class MapViewController: UIViewController {
         mapView.pointOfInterestFilter = .excludingAll
         
         decodeData()
-        displayView.titleView.text = annotations[1].title
-        displayView.descriptionView.text = annotations[1].subtitle
+        displayView.titleView.text = annotations[1].name
+        displayView.descriptionView.text = annotations[1].longDescription
         let region = MKCoordinateRegion(center: annotations[1].coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+        currentAnnotation = annotations[1]
         mapView.region = region
+        
+        displayView.favoriteView.addTarget(self,
+        action: #selector(buttonTapped),
+        for: .touchUpInside)
         
     }
     
@@ -43,31 +50,41 @@ class MapViewController: UIViewController {
         for location in locations.places {
             let annotation = Place()
             annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
-            annotation.title = location.name
-            annotation.subtitle = location.description
+            annotation.name = location.name
+            annotation.longDescription = location.description
             annotations.append(annotation)
             mapView.addAnnotation(annotation)
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! FavoritesViewController
-        destination.annotations = self.annotations
-        destination.delegate = self
+    @objc func buttonTapped(_ button: UIButton) {
+        if !button.isSelected {
+            favorites.append(currentAnnotation!)
+        }
+        button.isSelected = !button.isSelected
+        print(favorites)
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! FavoritesViewController
+        destination.annotations = self.favorites
+        destination.delegate = self
+    }
     
 }
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        displayView.titleView.text = (view.annotation?.title)!
-        displayView.descriptionView.text = (view.annotation?.subtitle)!
+        if let customAnnotation = view.annotation as? Place {
+            displayView.titleView.text = customAnnotation.name
+            displayView.descriptionView.text = customAnnotation.longDescription
+            currentAnnotation = view.annotation as? Place
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: id, for: annotation) as? MKMarkerAnnotationView else { return nil }
+        let annotationView = PlaceMarkerView()
+        print(type(of: annotationView))
         return annotationView
     }
 }
@@ -77,8 +94,8 @@ extension MapViewController: PlacesFavoritesDelegate {
         self.placeTitle = name
         for annotation in annotations {
             if annotation.title == name {
-                displayView.titleView.text = annotation.title
-                displayView.descriptionView.text = annotation.subtitle
+                displayView.titleView.text = annotation.name
+                displayView.descriptionView.text = annotation.longDescription
                 let region = MKCoordinateRegion(center: annotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
                 mapView.region = region
             }

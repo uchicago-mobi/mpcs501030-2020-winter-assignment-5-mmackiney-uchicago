@@ -49,7 +49,6 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate.favoritePlace(name: annotations[indexPath.row].title!)
         self.dismiss(animated: true, completion: nil)
-        print("hi")
     }
 
 }
