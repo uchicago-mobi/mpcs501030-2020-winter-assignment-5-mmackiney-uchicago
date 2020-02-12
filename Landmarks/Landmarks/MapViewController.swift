@@ -22,6 +22,14 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let defaults = UserDefaults.standard
+//        if let savedFavorites = defaults.object(forKey: "favorites") as? Data {
+//            if let decodedFavorites = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedFavorites) as? [Place] {
+//                favorites = decodedFavorites
+//            }
+//        }
+        
         mapView.delegate = self
 
         mapView.showsCompass = false

@@ -18,7 +18,12 @@ public class DataManager {
 
     // Your code (these are just example functions, implement what you need)
     func saveFavorites(places: [Place]) {
-        UserDefaults.standard.set(places, forKey: "favoritesarray")
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: places, requiringSecureCoding: false) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "favorites")
+        }
     }
-    func deleteFavorite() {}
+    func deleteFavorites() {
+        UserDefaults.standard.removeObject(forKey: "favoritesarray")
+    }
 }
