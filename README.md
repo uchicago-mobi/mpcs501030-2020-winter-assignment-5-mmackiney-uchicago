@@ -1,3 +1,5 @@
+The app mostly works, but I was unable to get user defaults to save. I tried implementing some code that caused the program to crash, so I commented that out.
+
 Sources
 
 Using UITableViewDataSource https://stackoverflow.com/questions/26309205/populate-table-view-in-swift
