@@ -16,6 +16,7 @@ class MapViewController: UIViewController {
     
     let id = MKMapViewDefaultAnnotationViewReuseIdentifier
     var annotations = [Place]()
+    var placeTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,10 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! FavoritesViewController
         destination.annotations = self.annotations
+        destination.delegate = self
     }
+    
+    
     
 }
 
@@ -70,5 +74,14 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: PlacesFavoritesDelegate {
     func favoritePlace(name: String) {
+        self.placeTitle = name
+        for annotation in annotations {
+            if annotation.title == name {
+                displayView.titleView.text = annotation.title
+                displayView.descriptionView.text = annotation.subtitle
+                let region = MKCoordinateRegion(center: annotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+                mapView.region = region
+            }
+        }
     }
 }

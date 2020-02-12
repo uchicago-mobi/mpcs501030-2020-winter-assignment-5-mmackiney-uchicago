@@ -13,5 +13,6 @@ class Place: MKPointAnnotation {
 
     var name: String?
     var longDescription: String?
+    var favorite: Bool?
     
 }

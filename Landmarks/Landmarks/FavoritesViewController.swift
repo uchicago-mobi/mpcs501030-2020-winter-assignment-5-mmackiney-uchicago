@@ -11,7 +11,7 @@ import UIKit
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var favoritesTable: UITableView!
-    weak var delegate: PlacesFavoritesDelegate?
+    weak var delegate: PlacesFavoritesDelegate! = nil
     var annotations: [Place] = []
     @IBOutlet var dismissButton: UIButton!
     
@@ -47,12 +47,9 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate.favoritePlace(name: annotations[indexPath.row].title!)
         self.dismiss(animated: true, completion: nil)
         print("hi")
-    }
-    
-    @IBAction func pushData(_ sender: Any) {
-        
     }
 
 }
