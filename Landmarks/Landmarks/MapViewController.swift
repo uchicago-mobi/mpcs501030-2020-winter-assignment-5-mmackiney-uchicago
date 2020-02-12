@@ -58,10 +58,15 @@ class MapViewController: UIViewController {
     }
     
     @objc func buttonTapped(_ button: UIButton) {
-        if !button.isSelected {
+        if !currentAnnotation!.favorite {
+            currentAnnotation?.favorite = true
             favorites.append(currentAnnotation!)
+            print("added")
+        } else {
+            currentAnnotation?.favorite = false
+            print("nothing")
         }
-        button.isSelected = !button.isSelected
+        button.isSelected = currentAnnotation!.favorite
         print(favorites)
     }
     
@@ -78,6 +83,7 @@ extension MapViewController: MKMapViewDelegate {
         if let customAnnotation = view.annotation as? Place {
             displayView.titleView.text = customAnnotation.name
             displayView.descriptionView.text = customAnnotation.longDescription
+            displayView.favoriteView.isSelected = customAnnotation.favorite
             currentAnnotation = view.annotation as? Place
         }
     }
@@ -93,9 +99,10 @@ extension MapViewController: PlacesFavoritesDelegate {
     func favoritePlace(name: String) {
         self.placeTitle = name
         for annotation in annotations {
-            if annotation.title == name {
+            if annotation.name == name {
                 displayView.titleView.text = annotation.name
                 displayView.descriptionView.text = annotation.longDescription
+                displayView.favoriteView.isSelected = annotation.favorite
                 let region = MKCoordinateRegion(center: annotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
                 mapView.region = region
             }

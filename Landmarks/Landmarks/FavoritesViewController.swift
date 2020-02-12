@@ -42,12 +42,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel!.text = annotations[indexPath.row].title
+        cell.textLabel!.text = annotations[indexPath.row].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate.favoritePlace(name: annotations[indexPath.row].title!)
+        delegate.favoritePlace(name: annotations[indexPath.row].name!)
         self.dismiss(animated: true, completion: nil)
     }
 
